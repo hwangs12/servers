@@ -21,3 +21,11 @@ Some ideas:
     - first i need to set up server itself
     - then make those listeners in different cores to respond
     - once downloads start let other thread serve customer request
+
+## DESIGN
+
+    - There are many ways to achieve this
+        - Create multiple threads listening to the client requests at the beginning (is this possible?)
+            - the downside will be only a single core will be in charge for download
+        - By having master thread listen to the client and distribute the work 
+            - the downside will be listener can't listen while sending requests. (can we improve this?)
