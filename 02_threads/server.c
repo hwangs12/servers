@@ -5,7 +5,7 @@
 #include "cores.h"
 
 void* thread_function(void* arg) {
-    int thread_num = *((int *)arg);
+    int thread_num = (int)(arg);
     printf("[thread %d] Hello from the detached thread!\n", thread_num);
     return NULL;
 }
@@ -19,7 +19,7 @@ int main() {
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
     for (int i = 0; i < num_cpus - 1; i++) {
-        if (pthread_create(&threads[i], &attr, thread_function, (void*)&i) != 0) {
+        if (pthread_create(&threads[i], &attr, thread_function, (void*)i) != 0) {
             perror("Failed to create thread");
             return 1;
         }
